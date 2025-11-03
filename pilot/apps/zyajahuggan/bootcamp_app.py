@@ -7,7 +7,7 @@ from rosetta.core.pack.task import TaskFactory
 from rosetta.core.pack import pack_rotamers
 from rosetta.core import kinematics, optimization
 from rosetta.core.pack.task import operation
-from pyrosetta.rosetta.protocols.moves import MonteCarlo
+from pyrosetta.rosetta.protocols.moves import AddPyMOLObserver, MonteCarlo
 
 init(extra_options="-ignore_unrecognized_res")
 
@@ -44,12 +44,12 @@ temp = 1.0
 monte_carlo_initial = MonteCarlo(mypose,sfxn,temp)
 
 # PyMol Observer 
-#the_observer = protocols.moves.PyMOLObserver(mypose, True, 0)
-#the_observer.pymol().apply(mypose)
+the_observer = AddPyMOLObserver(mypose)
+the_observer.pymol().apply(mypose)
 
 # Monte Carlo Loop 
 total =  mypose.total_residue()
-for i in range(100):
+for i in range(50):
     pack_rotamers(mypose,sfxn,task)
     minimizer.run(mypose,movemap,sfxn,min_opts)
 
