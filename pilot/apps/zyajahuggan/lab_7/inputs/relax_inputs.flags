@@ -1,0 +1,10 @@
+-database  /Users/zyhuggan/bootcamp/rosetta/database
+-in:file:s /Users/zyhuggan/bootcamp/pyrosetta_scripts/pilot/apps/zyajahuggan/lab_7/inputs/5J0K_A.pdb
+-in:file:native /Users/zyhuggan/bootcamp/pyrosetta_scripts/pilot/apps/zyajahuggan/lab_7/inputs/5J0K_A.pdb
+-nstruct 3
+-relax:constrain_relax_to_start_coords
+-relax:fast
+-out:file:o r_
+-out:file:silent relax.out
+-out:file:scorefile score.sc
+
