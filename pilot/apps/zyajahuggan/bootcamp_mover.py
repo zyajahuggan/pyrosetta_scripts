@@ -11,11 +11,13 @@ from pyrosetta.rosetta.core.pose import correctly_add_cutpoint_variants
 from pyrosetta.rosetta.core.scoring import ScoreType, get_score_function, parse_score_function, attributes_for_parse_score_function_w_description
 from pyrosetta.rosetta.utility.tag import XMLSchemaAttribute, XMLSchemaComplexTypeGenerator, XMLSchemaDataType, XMLSchemaCommonType
 from pyrosetta.rosetta.protocols.moves import xsd_type_definition_w_attributes
+from bootcamp_app import fold_tree_from_dssp_string
 
 class BootCampMover:
-    def __init__(self,scorefxn=None,num_iteration = 10):
-        super().__init__(self) # or rosetta.protocols.moves.Mover.__init__(self)
-        self._sfxn = scorefxn
+    _clones = list()
+    def __init__(self, sfxn: ScoreFunction | None = None, num_iterations: int = 10):
+        super().__init__() # or rosetta.protocols.moves.Mover.__init__(self)
+        self._sfxn = sfxn
         self._num_iterations = num_iterations 
     def apply(self,pose):
         ss = Dssp(pose).get_dssp_secstruct()
@@ -94,6 +96,7 @@ class BootCampMover:
                 
     def get_name(self):
         self.__class__.__name__
+        return "BootCampMover"
 
     @staticmethod
     def mover_name():
@@ -131,5 +134,12 @@ class BootCampMover:
             attrs
         )
 
+    def clone(self):
+        copy = BootCampMover(self._sfxn, self._num_iterations)
+        BootCampMover._clones.append(copy)
+        return copy
 
-    
+    def fresh_instance(self):
+        return BootCampMover()
+
+
