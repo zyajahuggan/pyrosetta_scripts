@@ -1,5 +1,5 @@
 from pyrosetta import *
-from pyrosetta.rosetta.protocols.moves import MoverRegistrator
+from pyrosetta.rosetta.protocols.moves import MoverFactory
 from pyrosetta.rosetta.protocols.rosetta_scripts import XmlObjects
 
 from bootcamp_mover import BootCampMover 
@@ -19,7 +19,7 @@ EMBEDDED_XML = """
 """
 
 def main():
-    MoverRegistrator.register_mover("BootCampMover", BootCampMover)
+    MoverFactory.get_instance().add_mover_type("BootCampMover", BootCampMover)
     init()
 
     pose = pose_from_pdb("input.pdb")

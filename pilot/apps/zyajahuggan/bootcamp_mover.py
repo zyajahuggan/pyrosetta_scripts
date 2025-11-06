@@ -1,9 +1,9 @@
 import random
 from pyrosetta import *
-from rosetta.core.pack.task import operation
-from rosetta.core.pack.task import TaskFactory
-from rosetta.core.pack import pack_rotamers
-from rosetta.core import kinematics, optimization
+from pyrosetta.rosetta.core.pack.task import operation
+from pyrosetta.rosetta.core.pack.task import TaskFactory
+from pyrosetta.rosetta.core.pack import pack_rotamers
+from pyrosetta.rosetta.core import kinematics, optimization
 from pyrosetta.rosetta.protocols.moves import AddPyMOLObserver, MonteCarlo
 from pyrosetta.rosetta.core.scoring.dssp import Dssp
 from pyrosetta.rosetta.core.kinematics import FoldTree
@@ -12,10 +12,12 @@ from pyrosetta.rosetta.core.scoring import ScoreType, get_score_function, parse_
 from pyrosetta.rosetta.utility.tag import XMLSchemaAttribute, XMLSchemaComplexTypeGenerator, XMLSchemaDataType, XMLSchemaCommonType
 from pyrosetta.rosetta.protocols.moves import xsd_type_definition_w_attributes
 from bootcamp_app import fold_tree_from_dssp_string
+from pyrosetta.rosetta.protocols.moves import Mover
 
-class BootCampMover:
+
+class BootCampMover(Mover):
     _clones = list()
-    def __init__(self, sfxn: ScoreFunction | None = None, num_iterations: int = 10):
+    def __init__(self, sfxn  = None, num_iterations: int = 10):
         super().__init__() # or rosetta.protocols.moves.Mover.__init__(self)
         self._sfxn = sfxn
         self._num_iterations = num_iterations 
