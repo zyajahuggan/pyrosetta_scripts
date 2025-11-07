@@ -1,8 +1,9 @@
 from pyrosetta.rosetta import protocols 
 from bootcamp_mover import BootCampMover
 
-class BootCamMoverCreator(protocols.moves.MoverCreator):
+class BootCampMoverCreator(protocols.moves.MoverCreator):
     _instances = list()
+    _py_mover_creators = []
 
     def __init__(self):
         protocols.moves.MoverCreator.__init__(self)
@@ -18,3 +19,11 @@ class BootCamMoverCreator(protocols.moves.MoverCreator):
     def provide_xml_schema(self, xsd):
         print("creator provide_xml_schema is called")
         BootCampMover.provide_xml_schema(xsd)
+
+    @staticmethod
+    def register():
+        factory = protocols.moves.MoverFactory.get_instance()
+        creator = BootCampMoverCreator()
+        factory.factory_register(creator)
+
+        BootCampMoverCreator._py_mover_creators.append(creator)

@@ -3,6 +3,7 @@ from pyrosetta.rosetta.protocols.moves import MoverFactory
 from pyrosetta.rosetta.protocols.rosetta_scripts import XmlObjects
 
 from bootcamp_mover import BootCampMover 
+from register_mover import BootCampMoverCreator
 
 EMBEDDED_XML = """
 <ROSETTASCRIPTS>
@@ -19,18 +20,17 @@ EMBEDDED_XML = """
 """
 
 def main():
-    MoverFactory.get_instance().add_mover_type("BootCampMover", BootCampMover)
+    BootCampMoverCreator.register()
     init()
-
-    pose = pose_from_pdb("input.pdb")
+    pose = pose_from_pdb("1UBQ.pdb.gz")
 
     xmlobj = XmlObjects.create_from_string(EMBEDDED_XML)
     protocol = xmlobj.get_mover("ParsedProtocol")
-
     protocol.apply(pose)
 
-
     pose.dump_pdb("refined_output.pdb")
+    print("✅ Finished! Output written to refined_output.pdb")
+
 
 
 if __name__ == "__main__":

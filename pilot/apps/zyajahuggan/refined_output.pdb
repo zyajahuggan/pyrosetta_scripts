@@ -1240,7 +1240,7 @@ ATOM   1230 1HA  GLY A  76      43.073  43.097  26.700  1.00  0.00           H
 ATOM   1231 2HA  GLY A  76      41.360  42.923  27.029  1.00  0.00           H  
 TER                                                                             
 # All scores below are weighted scores, not raw scores.
-#BEGIN_POSE_ENERGIES_TABLE Monte_Carlo.pdb
+#BEGIN_POSE_ENERGIES_TABLE refined_output.pdb
 label fa_atr fa_rep fa_sol fa_intra_rep fa_intra_sol_xover4 lk_ball_wtd fa_elec pro_close hbond_sr_bb hbond_lr_bb hbond_bb_sc hbond_sc dslf_fa13 omega fa_dun p_aa_pp yhh_planarity ref linear_chainbreak rama_prepro total
 weights 1 0.55 1 0.005 1 1 1 1.25 1 1 1 1 1.25 0.4 0.7 0.6 0.625 1 1 0.45 NA
 pose -384.014 37.7996 239.493 0.80517 11.9479 -8.8313 -135.992 0.15888 -20.4232 -25.6878 -11.809 -10.8912 0 2.20167 83.3894 -17.0502 0.00307 11.8844 6.30077 -13.2858 -234
@@ -1320,5 +1320,5 @@ LEU_73 -3.50403 0.35289 1.17231 0.01398 0.05165 -0.32401 -0.7044 0 0 0 0 0 0 0.0
 ARG_74 -1.81455 0.02057 2.4154 0.01591 0.3767 0.31887 -1.41097 0 0 0 0 -1.05795 0 -0.00146 1.82297 0.09914 0 -0.09474 0 0.09948 0.78936
 GLY_75 -1.02538 0.16813 1.19725 2e-05 0 -0.03377 -0.96301 0 0 0 0 0 0 -0.08023 0 -1.48615 0 0.79816 0 0.34146 -1.08354
 GLY:CtermProteinFull_76 -0.16437 0.00061 0.21394 0.00021 0 -0.04772 -0.22742 0 0 0 0 0 0 0 0 0 0 0.79816 0 0.07801 0.65141
-#END_POSE_ENERGIES_TABLE Monte_Carlo.pdb
+#END_POSE_ENERGIES_TABLE refined_output.pdb
 
